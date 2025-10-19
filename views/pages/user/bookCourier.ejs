@@ -1,0 +1,58 @@
+<form action="/home/bookCourier" method="POST" class="p-4 border rounded shadow bg-light">
+  <h3 class="mb-4 text-center">Book Courier</h3>
+
+  <div class="row">
+    <!-- Receiver Name -->
+    <div class="col-md-6 mb-3">
+      <label for="receiverName" class="form-label">Receiver Name</label>
+      <input type="text" class="form-control" id="receiverName" name="receiverName" placeholder="Enter receiver's name" required>
+    </div>
+
+    <!-- Receiver Phone -->
+    <div class="col-md-6 mb-3">
+      <label for="receiverPhone" class="form-label">Receiver Phone</label>
+      <input type="tel" class="form-control" id="receiverPhone" name="receiverPhone" placeholder="Enter receiver's phone" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Sender Phone -->
+    <div class="col-md-6 mb-3">
+      <label for="senderPhone" class="form-label">Your Phone</label>
+      <input type="tel" class="form-control" id="senderPhone" name="senderPhone" placeholder="Enter your phone" required>
+    </div>
+
+    <!-- Weight -->
+    <div class="col-md-6 mb-3">
+      <label for="weight" class="form-label">Parcel Weight (kg)</label>
+      <input type="number" step="0.1" class="form-control" id="weight" name="weight" placeholder="Enter weight in kg" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Address (full width) -->
+    <div class="col-md-12 mb-3">
+      <label for="address" class="form-label">Receiver Address</label>
+      <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter receiver's address" required></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Payment Mode -->
+    <div class="col-md-6 mb-3">
+      <label for="paymentMode" class="form-label">Payment Mode</label>
+      <select class="form-select" id="paymentMode" name="paymentMode" required>
+        <option value="">Choose...</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+        <option value="UPI">UPI</option>
+        <option value="Card">Card</option>
+        <option value="Net Banking">Net Banking</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Book Courier</button>
+  </div>
+</form>

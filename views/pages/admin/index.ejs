@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Welcome, <%= user.name %>!</h2>
+
+  <div class="row g-4 mb-5">
+    <!-- Total Earnings -->
+    <div class="col-md-4">
+      <div class="card text-white bg-success h-100 shadow">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Earnings</h5>
+          <p class="card-text display-6">₹<%= Number(totalEarnings).toFixed(2) %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Bookings -->
+    <div class="col-md-4">
+      <div class="card text-white bg-primary h-100 shadow">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Bookings</h5>
+          <p class="card-text display-6"><%= totalBookings %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Earnings -->
+    <div class="col-md-4">
+      <div class="card bg-light h-100 shadow">
+        <div class="card-body">
+          <h5 class="card-title text-center">Monthly Earnings</h5>
+          <ul class="list-group list-group-flush mt-3">
+            <% if (monthlyResults.length > 0) { %>
+              <% monthlyResults.forEach(m => { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Month <%= m.month %>
+                  <span class="badge bg-success rounded-pill">₹<%= Number(m.monthlyEarnings).toFixed(2) %></span>
+                </li>
+              <% }) %>
+            <% } else { %>
+              <li class="list-group-item text-center">No earnings yet</li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="text-center mt-4 mb-5">
+    <a href="/admin/bookings" class="btn btn-outline-primary btn-lg me-3">View Bookings</a>
+    <a href="/admin/users" class="btn btn-outline-secondary btn-lg">View Users</a>
+  </div>
+</div>

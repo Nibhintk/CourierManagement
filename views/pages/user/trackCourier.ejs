@@ -1,0 +1,82 @@
+
+<body class="bg-light">
+
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center">Track Your Courier</h2>
+    <form action="/home/trackCourier" method="post" class="row g-3">
+      <div class="col-md-10">
+        <input type="text" name="trackingNo" class="form-control" placeholder="Enter Tracking Number" required>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button type="submit" class="btn btn-primary">Track</button>
+      </div>
+    </form>
+  </div>
+
+  <% if (courier) { %>
+    <!-- Courier Info -->
+    <div class="card shadow-lg p-4 mt-4">
+      <h3 class="text-success">Courier Details</h3>
+      <p><strong>Tracking No:</strong> <%= courier.tracking_no %></p>
+      <p><strong>Receiver:</strong> <%= courier.receiver_name %> (📞 <%= courier.receiver_phone %>)</p>
+      <p><strong>Address:</strong> <%= courier.delivery_address %></p>
+      <p><strong>Weight:</strong> <%= courier.weight %> Kg</p>
+      <p><strong>Status:</strong> <%= courier.status %></p>
+      <p><strong>Booking Date:</strong> <%= courier.booking_date.toLocaleString() %></p>
+      <% if (courier.delivery_date) { %>
+        <p><strong>Delivery Date:</strong> <%= courier.delivery_date.toLocaleString() %></p>
+      <% } %>
+    </div>
+
+    <!-- Payment Info -->
+    <div class="card shadow-lg p-4 mt-4">
+      <h3 class="text-info">Payment Details</h3>
+      <% if (payment) { %>
+        <p><strong>Amount:</strong> ₹ <%= payment.amount %></p>
+        <p><strong>Mode:</strong> <%= payment.payment_mode %></p>
+        <p><strong>Status:</strong> <%= payment.payment_status %></p>
+        <% if (payment.paid_at) { %>
+          <p><strong>Paid At:</strong> <%= payment.paid_at.toLocaleString() %></p>
+        <% } %>
+      <% } else { %>
+        <p class="text-muted">No payment info available.</p>
+      <% } %>
+    </div>
+
+    <!-- Tracking History -->
+    <div class="card shadow-lg p-4 mt-4">
+      <h3 class="text-primary">Tracking History</h3>
+      <% if (tracking.length > 0) { %>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Location</th>
+              <th>Updated At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% tracking.forEach(t => { %>
+              <tr>
+                <td><%= t.status %></td>
+                <td><%= t.location %></td>
+                <td><%= t.updated_at.toLocaleString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <p class="text-muted">No tracking updates yet.</p>
+      <% } %>
+    </div>
+  <% } else if (notFound) { %>
+    <div class="alert alert-danger mt-4 text-center">
+      🚫 No courier found with this tracking number.
+    </div>
+  <% } %>
+
+</div>
+
+</body>
+

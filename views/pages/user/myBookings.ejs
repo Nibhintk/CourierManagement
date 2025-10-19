@@ -1,0 +1,48 @@
+
+<body class="bg-light">
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">📦 My Bookings</h2>
+
+  <% if (couriers.length > 0) { %>
+    <table class="table table-bordered table-hover bg-white shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Tracking No</th>
+          <th>Receiver</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Weight (Kg)</th>
+          <th>Status</th>
+          <th>Amount (₹)</th>
+          <th>Payment Status</th>
+          <th>Booking Date</th>
+          <th>Delivery Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% couriers.forEach(c => { %>
+          <tr>
+            <td><%= c.tracking_no %></td>
+            <td><%= c.receiver_name %></td>
+            <td><%= c.receiver_phone %></td>
+            <td><%= c.delivery_address %></td>
+            <td><%= c.weight %></td>
+            <td><%= c.status %></td>
+            <td><%= c.amount %></td>
+            <td><%= c.payment_status %></td>
+            <td><%= c.booking_date.toLocaleString() %></td>
+            <td><%= c.delivery_date ? c.delivery_date.toLocaleString() : '-' %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="alert alert-info text-center">
+      You have not booked any couriers yet.
+    </div>
+  <% } %>
+</div>
+
+</body>
+

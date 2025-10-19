@@ -1,0 +1,65 @@
+<div class="container-fluid mt-4 px-4">
+  <h2>All Bookings</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover align-middle" style="min-width: 1400px;">
+      <thead class="table-dark">
+        <tr>
+          <th style="min-width: 140px;">Tracking No</th>
+          <th style="min-width: 120px;">Sender Name</th>
+          <th style="min-width: 120px;">Receiver Name</th>
+          <th style="min-width: 110px;">Phone</th>
+          <th style="min-width: 150px;">Address</th>
+          <th style="min-width: 90px;">Weight (kg)</th>
+          <th style="min-width: 140px;">Delivery Status</th>
+          <th style="min-width: 140px;">Payment Status</th>
+          <th style="min-width: 130px;">Payment Mode</th>
+          <th style="min-width: 100px;">Amount</th>
+          <th style="min-width: 160px;">Booking Date</th>
+          <th style="min-width: 140px;">Delivery Date</th>
+          <th style="min-width: 100px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(booking => { %>
+          <tr>
+            <td><%= booking.tracking_no %></td>
+            <td><%= booking.sender_name %></td>
+            <td><%= booking.receiver_name %></td>
+            <td><%= booking.receiver_phone %></td>
+            <td><%= booking.delivery_address %></td>
+            <td><%= booking.weight %></td>
+
+            <form action="/admin/bookings/update/<%= booking.courier_id %>" method="post">
+              <td>
+                <select name="deliveryStatus" class="form-select form-select-sm">
+                  <option value="Booked" <%= booking.delivery_status === "Booked" ? "selected" : "" %>>Booked</option>
+                  <option value="In Transit" <%= booking.delivery_status === "In Transit" ? "selected" : "" %>>In Transit</option>
+                  <option value="Delivered" <%= booking.delivery_status === "Delivered" ? "selected" : "" %>>Delivered</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="paymentStatus" class="form-select form-select-sm">
+                  <option value="Pending" <%= booking.payment_status === "Pending" ? "selected" : "" %>>Pending</option>
+                  <option value="Paid" <%= booking.payment_status === "Paid" ? "selected" : "" %>>Paid</option>
+                </select>
+              </td>
+
+              <td><%= booking.payment_mode %></td>
+              <td>₹<%= Number(booking.amount).toFixed(2) %></td>
+              <td><%= booking.booking_date.toLocaleString() %></td>
+              <td>
+                <input type="date" name="deliveryDate" class="form-control form-control-sm"
+                       value="<%= booking.delivery_date ? booking.delivery_date.toISOString().split('T')[0] : '' %>">
+              </td>
+              <td>
+                <button type="submit" class="btn btn-sm btn-primary">Update</button>
+              </td>
+            </form>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

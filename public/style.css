@@ -1,0 +1,29 @@
+
+
+.logout {
+  margin-left: auto;  /* pushes logout to the right */
+}
+/* Ensure body and html take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content pushes footer to the bottom */
+.main-content {
+    flex: 1;
+}
+
+/* Optional: Footer styling */
+footer {
+    background-color: #343a40; /* Bootstrap dark */
+    color: white;
+}
+footer a {
+    color: #ffffff;
+}
+footer a:hover {
+    color: #adb5bd; /* lighter hover color */
+}
